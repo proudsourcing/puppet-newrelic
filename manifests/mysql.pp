@@ -19,31 +19,31 @@ define newrelic::mysql(
 		subscribe => Package["openjdk-6-jdk"]
 	}
 
-	file { "/etc/newrelic/mysql/newrelic_mysql_plugin.tar.gz":
+	file { "/etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9.tar.gz":
 	    ensure => present,
-	    source => "puppet:///modules/newrelic/newrelic_mysql_plugin.tar.gz",
+	    source => "puppet:///modules/newrelic/newrelic_mysql_plugin-1.0.9.tar.gz",
 	    subscribe => File["/etc/newrelic/mysql"]
 	}
 
-	exec {"/bin/tar zxvf newrelic_mysql_plugin.tar.gz":
+	exec {"/bin/tar zxvf newrelic_mysql_plugin-1.0.9.tar.gz":
 		cwd => "/etc/newrelic/mysql",
-		subscribe => File["/etc/newrelic/mysql/newrelic_mysql_plugin.tar.gz"]
+		subscribe => File["/etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9.tar.gz"]
 	}
 
-	file {"/etc/newrelic/mysql/newrelic_mysql_plugin/config/newrelic.properties":
+	file {"/etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9/config/newrelic.properties":
 		ensure => present,
 		content => template("newrelic/newrelic.properties.erb"),
-		subscribe => Exec["/bin/tar zxvf newrelic_mysql_plugin.tar.gz"]
+		subscribe => Exec["/bin/tar zxvf newrelic_mysql_plugin-1.0.9.tar.gz"]
 	}
 
-	file {"/etc/newrelic/mysql/newrelic_mysql_plugin/config/mysql.instance.json":
+	file {"/etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9/config/mysql.instance.json":
 		ensure => present,
 		content => template("newrelic/mysql.instance.json.erb"),
-		subscribe => Exec["/bin/tar zxvf newrelic_mysql_plugin.tar.gz"]
+		subscribe => Exec["/bin/tar zxvf newrelic_mysql_plugin-1.0.9.tar.gz"]
 	}
 
 	
-	exec {"/usr/bin/nohup /usr/bin/java -tar /etc/newrelic/mysql/newrelic_mysql_plugin/newrelic_mysql_plugin-*.jar":
-		subscribe => File["/etc/newrelic/mysql/newrelic_mysql_plugin/config/mysql.instance.json"]
+	exec {"/usr/bin/nohup /usr/bin/java -tar /etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9/newrelic_mysql_plugin-1.0.9-*.jar":
+		subscribe => File["/etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9/config/mysql.instance.json"]
 	}
 }
