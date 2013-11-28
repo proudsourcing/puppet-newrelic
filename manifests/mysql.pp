@@ -26,7 +26,7 @@ define newrelic::mysql(
 	}
 
 	exec {"/bin/tar zxvf newrelic_mysql_plugin.tar.gz":
-		cwd => "/opt/newrelic/mysql",
+		cwd => "/etc/newrelic/mysql",
 		subscribe => File["/etc/newrelic/mysql/newrelic_mysql_plugin.tar.gz"]
 	}
 
