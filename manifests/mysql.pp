@@ -43,7 +43,7 @@ define newrelic::mysql(
 	}
 
 	
-	exec {"/etc/alternatives/java -jar newrelic_mysql_plugin-1.0.9.jar > log.txt &":
+	exec {"/etc/alternatives/java -jar newrelic_mysql_plugin-1.0.9.jar > /dev/null 2>/dev/null &":
 		cwd => '/etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9/',
 		subscribe => File["/etc/newrelic/mysql/newrelic_mysql_plugin-1.0.9/config/mysql.instance.json"]
 	}
