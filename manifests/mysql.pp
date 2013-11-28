@@ -1,10 +1,10 @@
 define newrelic::mysql(
-	$server_name => "heps3.proudsourcing.de mysql",
-	$host => "localhost",
-	$metrics => "status,newrelic",
-	$user => "root",
-	$passwd => "FEyC0YCBs26c",
-	$newrelic_license_key => "9f7e5cb90f3de341cc19a984e2c0fc43b68555c3"
+	$server_name = "heps3.proudsourcing.de mysql",
+	$host = "localhost",
+	$metrics = "status,newrelic",
+	$user = "root",
+	$passwd = "FEyC0YCBs26c",
+	$newrelic_license_key = "9f7e5cb90f3de341cc19a984e2c0fc43b68555c3"
 ){
 	include newrelic
 
